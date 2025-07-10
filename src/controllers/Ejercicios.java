@@ -1,6 +1,8 @@
 package controllers;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Ejercicios {
 
@@ -28,7 +30,12 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (str1 == null || str2 == null) return false;
+        char[] arr1 = str1.replaceAll("\\s+", "").toCharArray();
+        char[] arr2 = str2.replaceAll("\\s+", "").toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1, arr2);
 
     }
 
@@ -48,7 +55,15 @@ public class Ejercicios {
      * Output: null
      */
     public int[] sumatoriaDeDos(int[] nums, int objetivo) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<Integer, Integer> mapa = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complemento = objetivo - nums[i];
+            if (mapa.containsKey(complemento)) {
+                return new int[]{mapa.get(complemento), i};
+            }
+            mapa.put(nums[i], i);
+        }
+        return null;
     }
 
     /**
@@ -60,7 +75,11 @@ public class Ejercicios {
      * Output: {h=1, o=1, l=1, a=1}
      */
     public void contarCaracteres(String texto) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<Character, Integer> conteo = new HashMap<>();
+        for (char c : texto.toCharArray()) {
+            conteo.put(c, conteo.getOrDefault(c, 0) + 1);
+        }
+        System.out.println(conteo);
     }
 
     /**
@@ -72,6 +91,11 @@ public class Ejercicios {
      * Output: true
      */
     public boolean sonAnagramas(String palabra1, String palabra2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (palabra1 == null || palabra2 == null) return false;
+        char[] arr1 = palabra1.replaceAll("\\s+", "").toCharArray();
+        char[] arr2 = palabra2.replaceAll("\\s+", "").toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1, arr2);
     }
 }
